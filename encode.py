@@ -1,6 +1,17 @@
-import binascii
+# Documentation about this PoC is here: http://www.vallejo.cc/2019/05/poc-encrypting-malicious-script-into.html
+# Author: Javier Vicente Vallejo
+# Tool to encode a given content into unicode invisible characters
 
-s = "import os\r\nos.system(\"c:\\windows\\system32\\calc.exe\")"
+import binascii
+import sys
+
+try:
+    f = open(sys.argv[1])
+    s = f.read()
+    f.close()
+except:
+    s = "import os\r\nos.system(\"c:\\windows\\system32\\calc.exe\")"
+    print "error, encoding default script", s
 
 #online string -> bits  and   bits -> string from https://stackoverflow.com/questions/10237926/convert-string-to-list-of-bits-and-viceversa
 
